@@ -5,6 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   
   const publicRoutes = [
     "",
+    "/auth",
     "/dashboard",
     "/dashboard/resume-builder",
     "/dashboard/ats-checker",

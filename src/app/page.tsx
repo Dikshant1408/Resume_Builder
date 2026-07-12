@@ -107,13 +107,13 @@ export default function LandingPage() {
 
           <div className="flex items-center gap-4">
             <Link 
-              href="/dashboard" 
+              href="/auth" 
               className="text-sm font-medium text-slate-300 hover:text-white transition-colors px-4 py-2"
             >
               Sign In
             </Link>
             <Link 
-              href="/dashboard" 
+              href="/auth" 
               className="text-sm font-semibold gradient-accent text-white px-5 py-2.5 rounded-xl shadow-lg shadow-blue-500/15 hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
             >
               Start Free
@@ -160,14 +160,14 @@ export default function LandingPage() {
           className="flex flex-col sm:flex-row items-center gap-5 z-20 mb-16"
         >
           <Link 
-            href="/dashboard" 
+            href="/auth" 
             className="w-full sm:w-auto text-base font-semibold gradient-accent text-white px-8 py-4 rounded-xl flex items-center justify-center gap-2 shadow-xl shadow-blue-500/20 hover:shadow-blue-500/40 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
           >
             Start Free Now
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link 
-            href="/dashboard" 
+            href="/auth" 
             className="w-full sm:w-auto text-base font-semibold border border-slate-700 bg-slate-900/60 backdrop-blur-sm text-slate-200 hover:text-white hover:border-slate-500 px-8 py-4 rounded-xl flex items-center justify-center transition-all duration-200"
           >
             View Live Demo
@@ -575,7 +575,7 @@ export default function LandingPage() {
             Join hundreds of professionals building modern, ATS-ready profiles and landing job interviews at leading technology companies.
           </p>
           <Link 
-            href="/dashboard"
+            href="/auth"
             className="inline-flex items-center gap-2 text-base font-semibold gradient-accent text-white px-8 py-4 rounded-xl shadow-xl shadow-blue-500/20 hover:shadow-blue-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all"
           >
             Create Your Resume Now
