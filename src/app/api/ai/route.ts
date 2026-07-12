@@ -9,27 +9,28 @@ export async function POST(request: Request) {
     }
 
     const apiKey = process.env.GEMINI_API_KEY;
+    const groqKey = process.env.GROQ_API_KEY;
+
+    // Create prompt instructions based on the requested action
+    let prompt = "";
+    if (action === "cover-letter") {
+      const params = JSON.parse(text);
+      prompt = `Generate a professional cover letter for a ${params.role} position at ${params.company}. Use a ${params.tone} writing style. Applicant's background is: ${params.userSummary}. Relevant experiences: ${params.userExperience}. Additional job specifications are: ${params.jobDescription || "None"}. Output only the cover letter body text, formatted cleanly.`;
+    } else if (action === "linkedin") {
+      const params = JSON.parse(text);
+      if (params.actionType === "headline") {
+        prompt = `Optimize the following LinkedIn headline to target a ${params.targetRole} position, including keywords and metric highlights. Current is: "${params.profileText}". Profile summary: "${params.userSummary}". Output only the optimized headline text.`;
+      } else if (params.actionType === "about") {
+        prompt = `Write a first-person story-driven LinkedIn About section (bio) targeting a ${params.targetRole} role. Focus on these skills: ${params.userSkills}. User summary: ${params.userSummary}. Output only the biography text.`;
+      } else {
+        prompt = `Extract and generate a list of 15 searchable LinkedIn skills and keywords relevant for a ${params.targetRole} role matching: ${params.profileText}. Output as a comma-separated list.`;
+      }
+    } else {
+      // Bullet enhancers
+      prompt = `Rewrite this resume bullet point using powerful action verbs and metrics-driven accomplishments. Input: "${text}". Action required: "${action}" (e.g. improve readability, make professional, shorten, expand, or add action verbs). Output only the enhanced sentence.`;
+    }
 
     if (apiKey) {
-      // Create prompt instructions based on the requested action
-      let prompt = "";
-      if (action === "cover-letter") {
-        const params = JSON.parse(text);
-        prompt = `Generate a professional cover letter for a ${params.role} position at ${params.company}. Use a ${params.tone} writing style. Applicant's background is: ${params.userSummary}. Relevant experiences: ${params.userExperience}. Additional job specifications are: ${params.jobDescription || "None"}. Output only the cover letter body text, formatted cleanly.`;
-      } else if (action === "linkedin") {
-        const params = JSON.parse(text);
-        if (params.actionType === "headline") {
-          prompt = `Optimize the following LinkedIn headline to target a ${params.targetRole} position, including keywords and metric highlights. Current is: "${params.profileText}". Profile summary: "${params.userSummary}". Output only the optimized headline text.`;
-        } else if (params.actionType === "about") {
-          prompt = `Write a first-person story-driven LinkedIn About section (bio) targeting a ${params.targetRole} role. Focus on these skills: ${params.userSkills}. User summary: ${params.userSummary}. Output only the biography text.`;
-        } else {
-          prompt = `Extract and generate a list of 15 searchable LinkedIn skills and keywords relevant for a ${params.targetRole} role matching: ${params.profileText}. Output as a comma-separated list.`;
-        }
-      } else {
-        // Bullet enhancers
-        prompt = `Rewrite this resume bullet point using powerful action verbs and metrics-driven accomplishments. Input: "${text}". Action required: "${action}" (e.g. improve readability, make professional, shorten, expand, or add action verbs). Output only the enhanced sentence.`;
-      }
-
       try {
         const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
         const response = await fetch(geminiUrl, {
@@ -48,7 +49,35 @@ export async function POST(request: Request) {
           }
         }
       } catch (err) {
-        console.error("Gemini API call failed, using mock fallback...", err);
+        console.error("Gemini API call failed, trying Groq fallback...", err);
+      }
+    }
+
+    if (groqKey) {
+      try {
+        const groqUrl = "https://api.groq.com/openai/v1/chat/completions";
+        const response = await fetch(groqUrl, {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${groqKey}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            model: "llama-3.3-70b-versatile",
+            messages: [{ role: "user", content: prompt }],
+            temperature: 0.2
+          })
+        });
+
+        if (response.ok) {
+          const resData = await response.json();
+          const choiceText = resData?.choices?.[0]?.message?.content;
+          if (choiceText) {
+            return NextResponse.json({ result: choiceText.trim() });
+          }
+        }
+      } catch (err) {
+        console.error("Groq API call failed, using mock fallback...", err);
       }
     }
 
