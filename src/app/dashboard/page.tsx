@@ -45,6 +45,8 @@ export default function DashboardOverview() {
   }, []);
 
   const recentResume = resumes[0] || null;
+  const fullName = recentResume?.content.personalInfo.fullName || "Alex Rivera";
+  const firstName = fullName.split(" ")[0] || "Alex";
   const totalApps = applications.length;
   const interviewApps = applications.filter((app) => app.status === "interview").length;
   const offerApps = applications.filter((app) => app.status === "offer").length;
@@ -109,7 +111,7 @@ export default function DashboardOverview() {
         </div>
         
         <div className="relative z-10 space-y-1.5">
-          <h2 className="text-2xl font-extrabold tracking-tight">Welcome Back, Alex!</h2>
+          <h2 className="text-2xl font-extrabold tracking-tight">Welcome Back, {firstName}!</h2>
           <p className="text-sm text-slate-500 dark:text-slate-400">
             Here is a snapshot of your professional documents, applications, and interview performance metrics.
           </p>
