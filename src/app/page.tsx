@@ -98,7 +98,7 @@ export default function LandingPage() {
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-200">
             <a href="#features" className="hover:text-white transition-colors">Features</a>
             <a href="#templates" className="hover:text-white transition-colors">Templates</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
@@ -108,7 +108,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-4">
             <Link 
               href="/auth" 
-              className="text-sm font-medium text-slate-300 hover:text-white transition-colors px-4 py-2"
+              className="text-sm font-medium text-slate-200 hover:text-white transition-colors px-4 py-2"
             >
               Sign In
             </Link>
@@ -122,8 +122,9 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-28 flex flex-col items-center text-center">
+      <main>
+        {/* Hero Section */}
+        <section className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-28 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -312,7 +313,7 @@ export default function LandingPage() {
                   </div>
                 </div>
                 <div className="relative z-10 p-5 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent border-t border-slate-800/30">
-                  <h4 className="font-bold text-white mb-0.5">{tmpl.name}</h4>
+                  <h3 className="font-bold text-white mb-0.5">{tmpl.name}</h3>
                   <p className="text-xs text-slate-400">{tmpl.type}</p>
                 </div>
               </div>
@@ -328,7 +329,7 @@ export default function LandingPage() {
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
               How to <span className="gradient-text">Build Your Profile</span> for Top Interviews
             </h2>
-            <p className="text-slate-400 text-sm md:text-base">
+            <p className="text-slate-200 text-sm md:text-base">
               Follow our comprehensive roadmap to build a competitive career profile, optimize resume files, launch personal websites, and prepare for interviews.
             </p>
           </div>
@@ -359,8 +360,8 @@ export default function LandingPage() {
               <div key={idx} className="glass-panel border border-slate-800 rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between h-72 text-left">
                 <span className="absolute top-4 right-6 text-5xl font-black text-slate-800 select-none">{item.step}</span>
                 <div className="space-y-3 mt-10">
-                  <h4 className="font-extrabold text-lg text-white">{item.title}</h4>
-                  <p className="text-xs text-slate-400 leading-relaxed font-medium">{item.desc}</p>
+                  <h3 className="font-extrabold text-lg text-white">{item.title}</h3>
+                  <p className="text-xs text-slate-200 leading-relaxed font-medium">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -379,7 +380,7 @@ export default function LandingPage() {
               <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight text-left">
                 Our technology works to get you noticed.
               </h2>
-              <p className="text-sm text-slate-400 leading-relaxed font-medium mb-6 text-left">
+              <p className="text-sm text-slate-200 leading-relaxed font-medium mb-6 text-left">
                 When you **build** a professional **resume** with ResumeForge AI, you prepare your profile for high-stakes **interviews**. Our system guarantees your **resume** is parsed correctly by applicant tracking engines (ATS) such as Greenhouse, Workday, and Lever.
               </p>
               
@@ -394,8 +395,8 @@ export default function LandingPage() {
                       {idx + 1}
                     </div>
                     <div className="space-y-1 text-left">
-                      <h5 className="font-extrabold text-xs text-slate-200">{info.title}</h5>
-                      <p className="text-xs text-slate-400 leading-relaxed">{info.desc}</p>
+                      <h3 className="font-extrabold text-xs text-slate-200">{info.title}</h3>
+                      <p className="text-xs text-slate-200 leading-relaxed">{info.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -435,7 +436,7 @@ export default function LandingPage() {
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
               Premium features, <span className="gradient-text">straightforward pricing.</span>
             </h2>
-            <p className="text-slate-400">
+            <p className="text-slate-200">
               Start building your resume for free, or unlock unlimited AI optimizations, custom domains, and cover letters.
             </p>
 
@@ -460,7 +461,7 @@ export default function LandingPage() {
             <div className="glass-card rounded-2xl border border-slate-800 bg-slate-950/40 p-8 flex flex-col justify-between hover:scale-100">
               <div>
                 <h3 className="font-bold text-xl text-white mb-2">Free Plan</h3>
-                <p className="text-xs text-slate-400 mb-6">Perfect for students and freshers initializing their career journey.</p>
+                <p className="text-xs text-slate-200 mb-6">Perfect for students and freshers initializing their career journey.</p>
                 <div className="text-4xl font-extrabold text-white mb-6">
                   $0<span className="text-sm font-normal text-slate-500">/mo</span>
                 </div>
@@ -495,7 +496,7 @@ export default function LandingPage() {
               </div>
               <div>
                 <h3 className="font-bold text-xl text-white mb-2">Premium Pro</h3>
-                <p className="text-xs text-slate-300 mb-6">Built for professionals and job switchers optimizing for rapid responses.</p>
+                <p className="text-xs text-slate-200 mb-6">Built for professionals and job switchers optimizing for rapid responses.</p>
                 <div className="text-4xl font-extrabold text-white mb-6">
                   {billingPeriod === "monthly" ? "$19" : "$15"}
                   <span className="text-sm font-normal text-slate-400">/mo</span>
@@ -583,6 +584,8 @@ export default function LandingPage() {
           </Link>
         </div>
       </section>
+
+      </main>
 
       {/* Footer Area */}
       <footer className="border-t border-slate-900 bg-[#070b16] py-12 text-slate-500 text-sm">
