@@ -32,9 +32,11 @@ export default function SkillsAnalyzer() {
   const [roadmapData, setRoadmapData] = useState<string[]>([]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const activeResume = resumes[0] || null;
 
   // Radar competencies data
