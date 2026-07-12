@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { 
@@ -35,6 +35,13 @@ export default function AuthPage() {
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // Set unique page title for SEO and accessibility audit compliance
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.title = "Sign In or Register | ResumeForge AI";
+    }
+  }, []);
 
   // Input states
   const [name, setName] = useState("");

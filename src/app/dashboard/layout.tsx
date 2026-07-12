@@ -59,6 +59,13 @@ export default function DashboardLayout({
     }
   }, [setPremium]);
 
+  // Update unique page title dynamically for search engine and accessibility compliance
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.title = `${getPageTitle()} | ResumeForge AI`;
+    }
+  }, [pathname]);
+
   const navItems = [
     { name: "Dashboard Overview", path: "/dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
     { name: "Resume Builder", path: "/dashboard/resume-builder", icon: <FileText className="w-5 h-5" /> },
@@ -114,6 +121,7 @@ export default function DashboardLayout({
             <button 
               className="md:hidden p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
               onClick={() => setSidebarOpen(false)}
+              aria-label="Close mobile navigation sidebar"
             >
               <X className="w-5 h-5" />
             </button>
@@ -179,6 +187,7 @@ export default function DashboardLayout({
             <button 
               className="md:hidden p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
               onClick={() => setSidebarOpen(true)}
+              aria-label="Open mobile navigation sidebar"
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -202,6 +211,7 @@ export default function DashboardLayout({
             <button 
               onClick={toggleDarkMode}
               className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
+              aria-label="Toggle dark mode visual theme"
             >
               {isDarkMode ? <Sun className="w-4.5 h-4.5 text-yellow-500" /> : <Moon className="w-4.5 h-4.5" />}
             </button>
@@ -211,6 +221,7 @@ export default function DashboardLayout({
               <button 
                 onClick={() => setNotificationsOpen(!notificationsOpen)}
                 className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 relative"
+                aria-label="Open notifications panel"
               >
                 <Bell className="w-4.5 h-4.5" />
                 <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-blue-600 animate-ping" />
@@ -245,14 +256,15 @@ export default function DashboardLayout({
               <button 
                 onClick={() => setUserDropdownOpen(!userDropdownOpen)}
                 className="flex items-center gap-2.5 focus:outline-none"
+                aria-label="Toggle user profile settings menu"
               >
-                <div className="w-9 h-9 rounded-xl gradient-accent text-white flex items-center justify-center font-bold text-sm shadow-md shadow-blue-500/10">
+                <span className="w-9 h-9 rounded-xl gradient-accent text-white flex items-center justify-center font-bold text-sm shadow-md shadow-blue-500/10">
                   AR
-                </div>
-                <div className="hidden lg:block text-left">
-                  <div className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Alex Rivera</div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400">Software Engineer</div>
-                </div>
+                </span>
+                <span className="hidden lg:block text-left">
+                  <span className="block text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Alex Rivera</span>
+                  <span className="block text-[10px] text-slate-500 dark:text-slate-400">Software Engineer</span>
+                </span>
               </button>
 
               {userDropdownOpen && (
