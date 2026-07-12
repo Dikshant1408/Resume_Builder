@@ -2,7 +2,7 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
+    --background: #f8fafc; /* Warm, off-white canvas for light mode contrast */
     --foreground: #0f172a;
     
     --card: #ffffff;
@@ -18,7 +18,7 @@
     --secondary-foreground: #ffffff;
     
     --muted: #f1f5f9;
-    --muted-foreground: #64748b;
+    --muted-foreground: #475569; /* Darker muted text for readability */
     
     --accent: #f1f5f9;
     --accent-foreground: #0f172a;
@@ -29,14 +29,14 @@
     --success: #22c55e;
     --warning: #f59e0b;
     
-    --border: #e2e8f0;
-    --input: #e2e8f0;
+    --border: #cbd5e1; /* Darker borders for crisp outlines */
+    --input: #cbd5e1;
     --ring: #2563eb;
     
     --radius: 16px;
     
-    --glass-bg: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(15, 23, 42, 0.08);
+    --glass-bg: rgba(255, 255, 255, 0.9); /* Solid card opacity */
+    --glass-border: rgba(15, 23, 42, 0.12); /* Higher contrast boundaries */
     --glass-glow: rgba(37, 99, 235, 0.03);
   }
 
@@ -100,6 +100,13 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --color-slate-105: #f1f5f9;
+  --color-slate-250: #e2e8f0;
+  --color-slate-350: #94a3b8;
+  --color-slate-450: #64748b;
+  --color-slate-650: #334155;
+  --color-slate-850: #0f172a;
   
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 4px);

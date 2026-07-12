@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { 
   Settings, 
@@ -21,13 +21,25 @@ import {
 } from "lucide-react";
 
 export default function SettingsPage() {
-  const { isDarkMode, toggleDarkMode, isPremium, setPremium } = useAppStore();
+  const { isDarkMode, toggleDarkMode, isPremium, setPremium, resumes, updateResumeContent } = useAppStore();
   const [activeSubTab, setActiveSubTab] = useState<"profile" | "billing" | "security" | "api">("profile");
 
+  const activeResume = resumes[0] || null;
+  const initialName = activeResume?.content.personalInfo.fullName || "Alex Rivera";
+  const initialEmail = activeResume?.content.personalInfo.email || "alex.rivera@example.com";
+
   // Profile states
-  const [userName, setUserName] = useState("Alex Rivera");
-  const [userEmail, setUserEmail] = useState("alex.rivera@example.com");
+  const [userName, setUserName] = useState(initialName);
+  const [userEmail, setUserEmail] = useState(initialEmail);
   const [resumePrivacy, setResumePrivacy] = useState("private");
+
+  // Sync state values if resume updates
+  useEffect(() => {
+    if (activeResume) {
+      setUserName(activeResume.content.personalInfo.fullName);
+      setUserEmail(activeResume.content.personalInfo.email);
+    }
+  }, [activeResume]);
 
   // API Key simulation states
   const [apiKey, setApiKey] = useState("");
@@ -130,7 +142,18 @@ export default function SettingsPage() {
 
               <div className="flex justify-end pt-3">
                 <button 
-                  onClick={() => alert("Profile details saved!")}
+                  onClick={() => {
+                    if (activeResume) {
+                      updateResumeContent({
+                        personalInfo: {
+                          ...activeResume.content.personalInfo,
+                          fullName: userName,
+                          email: userEmail
+                        }
+                      });
+                      alert("Profile details saved successfully!");
+                    }
+                  }}
                   className="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow shadow-blue-500/10"
                 >
                   Save Profile Settings

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useAppStore } from "@/store/useAppStore";
 import { 
   Sparkles, 
   Mail, 
@@ -32,6 +33,7 @@ const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export default function AuthPage() {
   const router = useRouter();
+  const { resumes, updateResumeContent } = useAppStore();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -59,6 +61,19 @@ export default function AuthPage() {
     }
 
     setLoading(true);
+
+    // Save custom user name input to store state during registration signup
+    if (mode === "signup" && name.trim()) {
+      const activeResume = resumes[0];
+      if (activeResume) {
+        updateResumeContent({
+          personalInfo: {
+            ...activeResume.content.personalInfo,
+            fullName: name
+          }
+        });
+      }
+    }
 
     // Simulate database credentials verification or profile creation
     setTimeout(() => {

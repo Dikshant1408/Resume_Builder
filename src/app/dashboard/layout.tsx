@@ -35,10 +35,19 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { isDarkMode, toggleDarkMode, isPremium, setPremium } = useAppStore();
+  const { isDarkMode, toggleDarkMode, isPremium, setPremium, resumes } = useAppStore();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+
+  const activeResume = resumes[0] || null;
+  const fullName = activeResume?.content.personalInfo.fullName || "Alex Rivera";
+  const initials = fullName
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .substring(0, 2)
+    .toUpperCase() || "AR";
 
   // Initialize theme from store on mount
   useEffect(() => {
@@ -259,10 +268,10 @@ export default function DashboardLayout({
                 aria-label="Toggle user profile settings menu"
               >
                 <span className="w-9 h-9 rounded-xl gradient-accent text-white flex items-center justify-center font-bold text-sm shadow-md shadow-blue-500/10">
-                  AR
+                  {initials}
                 </span>
                 <span className="hidden lg:block text-left">
-                  <span className="block text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Alex Rivera</span>
+                  <span className="block text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">{fullName}</span>
                   <span className="block text-[10px] text-slate-500 dark:text-slate-400">Software Engineer</span>
                 </span>
               </button>
