@@ -321,6 +321,113 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Comprehensive Workflow Guide */}
+      <section className="py-24 border-t border-slate-800 bg-slate-900/10">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+              How to <span className="gradient-text">Build Your Profile</span> for Top Interviews
+            </h2>
+            <p className="text-slate-400 text-sm md:text-base">
+              Follow our comprehensive roadmap to build a competitive career profile, optimize resume files, launch personal websites, and prepare for interviews.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Build and Customize",
+                desc: "Begin by inputting your professional achievements into our resume builder panel. Select from clean formats, drag sections into optimal layout structures, and utilize AI suggestions to polish description details."
+              },
+              {
+                step: "02",
+                title: "Compare and Audit",
+                desc: "Paste target job descriptions to analyze matching score percentages. Instantly identify missing skills keywords, audit formatting metrics, and improve bullet points using metrics-driven action verbs."
+              },
+              {
+                step: "03",
+                title: "Launch Portfolios",
+                desc: "Export your resume profile data into a responsive personal website sandbox in one click. Customise theme designs (minimalist, terminal, modern, corporate) and map your own custom domain name."
+              },
+              {
+                step: "04",
+                title: "Track and Rehearse",
+                desc: "To help you prepare, manage all career submissions using Kanban tracking boards. Generate automated email cover drafts, and prepare for interviews with active Technical or HR Q&A coaching panels."
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="glass-panel border border-slate-800 rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between h-72 text-left">
+                <span className="absolute top-4 right-6 text-5xl font-black text-slate-800 select-none">{item.step}</span>
+                <div className="space-y-3 mt-10">
+                  <h4 className="font-extrabold text-lg text-white">{item.title}</h4>
+                  <p className="text-xs text-slate-400 leading-relaxed font-medium">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Advanced Technology Infrastructure details */}
+      <section className="py-24 border-t border-slate-800">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="text-blue-500 font-bold text-xs uppercase tracking-widest flex items-center gap-1.5 mb-3">
+                <ShieldCheck className="w-4 h-4" /> Built for Modern Recruiting Systems
+              </span>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight text-left">
+                Our technology works to get you noticed.
+              </h2>
+              <p className="text-sm text-slate-400 leading-relaxed font-medium mb-6 text-left">
+                When you **build** a professional **resume** with ResumeForge AI, you prepare your profile for high-stakes **interviews**. Our system guarantees your **resume** is parsed correctly by applicant tracking engines (ATS) such as Greenhouse, Workday, and Lever.
+              </p>
+              
+              <div className="space-y-4">
+                {[
+                  { title: "Keywords Matching Analytics", desc: "Our engine parses descriptions to extract necessary skills and ensures they are distributed naturally throughout your text." },
+                  { title: "Standard PDF Layout Exports", desc: "Downloads are formatted using standard fonts and parser-friendly layouts, avoiding complex columns that break text scanning." },
+                  { title: "Realistic Mock Interview Prep", desc: "Rehearse and record answers to target role questions. Get immediate ratings on confidence level, speech grammar, and communication styles." }
+                ].map((info, idx) => (
+                  <div key={idx} className="flex gap-4">
+                    <div className="w-6 h-6 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-500 flex items-center justify-center shrink-0 mt-0.5 font-bold text-[10px]">
+                      {idx + 1}
+                    </div>
+                    <div className="space-y-1 text-left">
+                      <h5 className="font-extrabold text-xs text-slate-200">{info.title}</h5>
+                      <p className="text-xs text-slate-400 leading-relaxed">{info.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Visual block showing detailed specs */}
+            <div className="glass-card rounded-2xl border border-slate-800 p-8 space-y-6 bg-slate-950/40 relative overflow-hidden text-left">
+              <h3 className="font-extrabold text-sm text-white">System Compliance Checklist</h3>
+              <div className="space-y-3.5 text-xs">
+                {[
+                  "No un-scannable text blocks or images",
+                  "Action verb density exceeds 12% total keywords count",
+                  "Accomplishments are quantified with measurable outcomes",
+                  "Single-column template layout compatibility checks",
+                  "Standard contact metadata headers structured properly"
+                ].map((chk, i) => (
+                  <div key={i} className="flex items-center gap-3 text-slate-350">
+                    <CheckCircle className="w-4 h-4 text-blue-500 shrink-0" />
+                    {chk}
+                  </div>
+                ))}
+              </div>
+              
+              <div className="p-4 rounded-xl border border-indigo-500/10 bg-indigo-500/5 text-xs text-indigo-300 leading-relaxed">
+                By maintaining standard formats, your profile scores inside the 95th percentile of applicant tracking engines, helping you land **interviews** faster.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="pricing" className="py-24 border-t border-slate-800 bg-slate-900/10">
         <div className="max-w-7xl mx-auto px-6 text-center">

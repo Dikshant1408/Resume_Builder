@@ -8,8 +8,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ResumeForge AI - AI Career Platform & Resume Builder",
+  title: "ResumeForge AI - Career Platform & Professional CV Builder",
   description: "Build ATS-friendly resumes, optimize them for any job, generate AI cover letters, build portfolios, and prepare for interviews.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "google-site-verification-token-placeholder",
   },
